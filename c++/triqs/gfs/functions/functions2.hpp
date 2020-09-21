@@ -110,7 +110,7 @@ namespace triqs::gfs {
    * @return A pair of the tail object and the fitting error
    * @example triqs/gfs/fit_hermitian_tail.cpp
    */
-  template <int N = 0, typename G, typename A = typename G::data_t> // ::const_view_type>
+  template <int N = 0, typename G, typename A = typename G::data_t> 
   std::pair<typename A::regular_type, double> fit_hermitian_tail(G const &g, A const &known_moments = {}) REQUIRES(is_gf_v<G>) {
     std::optional<long> inner_matrix_dim;
     constexpr int rank = G::target_t::rank;

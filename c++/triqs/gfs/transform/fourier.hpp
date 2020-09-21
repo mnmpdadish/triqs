@@ -125,7 +125,10 @@ namespace triqs::gfs {
 
     auto const &out_mesh = get_out_mesh(gout);
 
-    
+    // FIXME : Code failed with nda optimisation relaxing assumption on iterator order.
+    // between nda::for_each and the flatten which were not inverse of each other any more
+    // TODO : put back the optimisation in nda (MACRO ??)
+    // some tests will fail and check in a test that flatten_2d and the inverse op are indeed inverse...
     auto gout_flatten = _fourier_impl(out_mesh, flatten_gf_2d<N>(gin), flatten_2d<0>(make_array_const_view(opt_args))...);
     auto _            = ellipsis();
     if constexpr (gin.data_rank == 1)
@@ -133,7 +136,6 @@ namespace triqs::gfs {
     else {
       // inverse operation as flatten_2d, exactly
       auto g_rot = nda::rotate_index_view<N>(gout.data());
-      //auto a_0   = g_rot(0, _);
       for (auto const &mp : out_mesh) {
         auto g_rot_sl = g_rot(mp.linear_index(), _); // if the array is long, it is faster to precompute the view ...
         auto gout_col = gout_flatten.data()(mp.linear_index(), _);

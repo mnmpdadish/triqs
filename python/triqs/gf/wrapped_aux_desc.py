@@ -15,7 +15,6 @@ m.add_include("<triqs/cpp2py_converters.hpp>")
 m.add_include("<triqs/gfs/legacy_for_python_api.hpp>")
 m.add_using("namespace triqs::arrays")
 m.add_using("namespace triqs::gfs")
-m.add_using("triqs::utility::mini_vector")
 m.add_preamble("""
 """)
 
@@ -42,13 +41,13 @@ def all_calls():
             yield M, ["array<dcomplex,%s>"%R], R, 'tensor_valued<%s>'%R, ['std::array<double, 3>']
 
     for M in ['cyclat']:
-        yield M, ["dcomplex"], 0, 'scalar_valued', ['triqs::utility::mini_vector<long,3>'] # R =1
-        yield M,["matrix<dcomplex>"], 2, 'matrix_valued', ['triqs::utility::mini_vector<long,3>'] # R =2
+        yield M, ["dcomplex"], 0, 'scalar_valued', ['std::array<long,3>'] # R =1
+        yield M,["matrix<dcomplex>"], 2, 'matrix_valued', ['std::array<long,3>'] # R =2
         for R in [3,4]:
-            yield M, ["array<dcomplex,%s>"%R], R, 'tensor_valued<%s>'%R, ['triqs::utility::mini_vector<long,3>']
+            yield M, ["array<dcomplex,%s>"%R], R, 'tensor_valued<%s>'%R, ['std::array<long,3>']
 
     for M1 in ['b_zone', 'cyclat']:
-      k_x = {'b_zone' : 'std::array<double, 3>', 'cyclat' : 'triqs::utility::mini_vector<long,3>'}[M1]
+      k_x = {'b_zone' : 'std::array<double, 3>', 'cyclat' : 'std::array<long,3>'}[M1]
 
       for M2 in ['imfreq']:
         yield 'prod<%s,%s>'%(M1,M2), ["dcomplex", "gf<imfreq, scalar_valued>"], 0, 'scalar_valued',[ (k_x, 'long'), (k_x, 'all_t')]
