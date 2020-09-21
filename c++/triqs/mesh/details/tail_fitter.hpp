@@ -216,7 +216,7 @@ namespace triqs::mesh {
       using triqs::arrays::ellipsis;
 
       // The values of the Green function. Swap relevant mesh to front
-      auto g_data_swap_idx = rotate_index_view<N>(g_data);
+      auto g_data_swap_idx = nda::rotate_index_view<N>(g_data);
       auto const &imp      = g_data_swap_idx.indexmap();
       long ncols           = imp.size() / imp.lengths()[0];
 

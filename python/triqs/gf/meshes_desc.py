@@ -185,15 +185,15 @@ module.add_class(m)
 ##   MeshBrillouinZone
 ########################
 
-m = make_mesh( py_type = "MeshBrillouinZone", c_tag = "b_zone", index_type = 'triqs::utility::mini_vector<int,3>' )
+m = make_mesh( py_type = "MeshBrillouinZone", c_tag = "b_zone", index_type = 'triqs::utility::mini_vector<long,3>' )
 m.add_constructor(signature = "(triqs::lattice::brillouin_zone b, int n_k)")
 m.add_constructor(signature = "(triqs::lattice::brillouin_zone b, matrix_view<int> periodization_matrix)")
-m.add_method(name="locate_neighbours", signature="triqs::utility::mini_vector<int,3> locate_neighbours(triqs::arrays::vector<double> x)")
-m.add_method(name="index_to_linear", signature="long index_to_linear(triqs::utility::mini_vector<int,3> x)")
+m.add_method(name="locate_neighbours", signature="triqs::utility::mini_vector<long,3> locate_neighbours(triqs::arrays::vector<double> x)")
+m.add_method(name="index_to_linear", signature="long index_to_linear(std::array<long,3> x)")
 
 m.add_property(name = "linear_dims",
-               getter = cfunction(calling_pattern="triqs::utility::mini_vector<int,3> result = self_c.get_dimensions()",
-               signature = "triqs::utility::mini_vector<int,3>()",
+               getter = cfunction(calling_pattern="triqs::utility::mini_vector<long,3> result = self_c.get_dimensions()",
+               signature = "triqs::utility::mini_vector<long,3>()",
                doc = "Linear dimensions"))
 m.add_property(name = "domain",
                getter = cfunction(calling_pattern="brillouin_zone result = self_c.domain()",
@@ -206,16 +206,16 @@ module.add_class(m)
 ##   MeshCyclicLattice
 ########################
 
-m = make_mesh( py_type = "MeshCyclicLattice", c_tag = "cyclat", index_type = 'triqs::utility::mini_vector<int,3>' )
+m = make_mesh( py_type = "MeshCyclicLattice", c_tag = "cyclat", index_type = 'triqs::utility::mini_vector<long,3>' )
 m.add_constructor(signature = "(int L1, int L2, int L3)")
 m.add_constructor(signature = "(triqs::lattice::bravais_lattice b, matrix_view<int> periodization_matrix)")
 m.add_constructor(signature = "(triqs::lattice::bravais_lattice b, int L)")
-m.add_method(name="locate_neighbours", signature="triqs::utility::mini_vector<int,3> locate_neighbours(triqs::arrays::vector<double> x)")
-m.add_method(name="index_to_linear", signature="long index_to_linear(triqs::utility::mini_vector<int,3> x)")
+m.add_method(name="locate_neighbours", signature="triqs::utility::mini_vector<long,3> locate_neighbours(triqs::arrays::vector<double> x)")
+m.add_method(name="index_to_linear", signature="long index_to_linear(std::array<long,3> x)")
 
 m.add_property(name = "linear_dims",
-               getter = cfunction(calling_pattern="triqs::utility::mini_vector<int,3> result = self_c.get_dimensions()",
-               signature = "triqs::utility::mini_vector<int,3>()",
+               getter = cfunction(calling_pattern="triqs::utility::mini_vector<long,3> result = self_c.get_dimensions()",
+               signature = "triqs::utility::mini_vector<long,3>()",
                doc = "Linear dimensions"))
 m.add_property(name = "domain",
                getter = cfunction(calling_pattern="bravais_lattice result = self_c.domain()",

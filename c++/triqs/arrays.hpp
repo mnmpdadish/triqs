@@ -77,6 +77,8 @@ namespace triqs::arrays {
   std::array<long, sizeof...(T)> make_shape(T... x) {
     return {long(x)...};
   }
+
+
 } // namespace triqs::arrays
 
 namespace nda {

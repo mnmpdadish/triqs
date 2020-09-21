@@ -52,6 +52,7 @@ external_dependency(Cpp2Py
   VERSION 2.0
   GIT_TAG master
   BUILD_ALWAYS
+  EXCLUDE_FROM_ALL
 )
 
 # -- GTest --
@@ -66,22 +67,26 @@ external_dependency(GTest
 external_dependency(itertools
   GIT_REPO https://github.com/TRIQS/itertools
   GIT_TAG cpp20
+  EXCLUDE_FROM_ALL
 )
 
 # -- mpi --
 external_dependency(mpi
   GIT_REPO https://github.com/TRIQS/mpi
   GIT_TAG cpp20
+  EXCLUDE_FROM_ALL
 )
 
 # -- h5 --
 external_dependency(h5
   GIT_REPO https://github.com/TRIQS/h5
   GIT_TAG cpp20
+  EXCLUDE_FROM_ALL
 )
 
 # -- nda --
 external_dependency(nda
   GIT_REPO https://github.com/TRIQS/nda
   GIT_TAG cpp20
+  EXCLUDE_FROM_ALL
 )
